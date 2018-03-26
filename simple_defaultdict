@@ -1,0 +1,11 @@
+class Defaultdict(dict):
+
+	def __init__(self, func):
+		self._default = func()
+
+	def __getitem__(self, key):
+		try:
+			return dict.__getitem__(self, key)
+		except KeyError:
+			self[key] = self._default
+			return self[key] 
